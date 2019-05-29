@@ -3,9 +3,7 @@ import sys
 import pandas as pd
 import numpy.testing as npt
 from pandas.util.testing import assert_frame_equal
-
-sys.path.insert(0, '.\\nVision')
-import pca as pca
+from nVision import pca
 
 
 def test_pca_analysis():
@@ -18,6 +16,5 @@ def test_interaction_features():
     expected = pd.DataFrame({'A':[1,1,1],'B':[2,2,2],'C':[3,3,3],'A:A':[1,1,1],'A:B':[2,2,2],'A:C':[3,3,3],'B:B':[4,4,4],'B:C':[6,6,6],'C:C':[9,9,9]})
     data = pd.DataFrame({'A':[1,1,1],'B':[2,2,2],'C':[3,3,3]})
     actual = pca.interaction_features(data)
-    
+
     assert_frame_equal(expected, actual)
-    
