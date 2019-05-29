@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/OlivierRynne/nVision.svg?branch=master)](https://travis-ci.org/OlivierRynne/nVision)
+
 # **n**Vision
 
 Fitting and visualization of responses with n-independent variables
