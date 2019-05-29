@@ -7,6 +7,30 @@ from sklearn.decomposition import PCA
 
 def interaction_features(data):
     """
+    Outputs an extended array with all possible interaction features x_i * x_j
+
+    Parameters
+    ----------
+    data : DataFrame
+        2D DataFrame of dimensions (n observations) x (p features)
+
+    Returns
+    -------
+    comb_data : DataFrame
+        2D DataFrame containing original p features plus C(p+1,p-1) new
+        interaction features
+
+    Examples
+    --------
+    >>> A
+        0   1
+    0   1   0
+    1   0   1
+
+    >>> interaction_features(A)
+        0   1   0:0 0:1 1:1
+    0   1   0   1   0   0
+    1   0   1   0   0   1
 
     """
     new_cols = []
@@ -14,11 +38,11 @@ def interaction_features(data):
     for i, xi in enumerate(data.columns.tolist()):
 
         for xj in data.columns.tolist()[i:]:
-            new_cols.append(xi + ':' + xj)
-            new_data[xi + ':' + xj] = data[xi] * data[xj]
+            new_cols.append(str(xi) + ':' + str(xj))
+            new_data[str(xi) + ':' + str(xj)] = data[xi] * data[xj]
             # print("Done with iteration {}".format(xi + ':' + xj))
 
-        comb_data = pd.concat([data, new_data], axis=1)
+    comb_data = pd.concat([data, new_data], axis=1)
 
     return comb_data
 
